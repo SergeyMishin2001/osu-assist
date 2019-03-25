@@ -24,9 +24,11 @@ private:
 	Bezier m_arcPoints;
 	Bezier m_result;
 	
+// VERBOSE
 	int m_userTotalArcPoints;
-    
-    bool isOkay = false;
+    int m_totalPoints;
+    double m_sliderLength;
+
 	
 // METHODS
 	static double getLengthSum(const Bezier& points);
@@ -55,7 +57,9 @@ public:
 	
 	void process();
     
-    void print();
+    void pickSegmentPoints();
+    
+    void printReport();
 	
 	friend std::ostream& operator<<(std::ostream& out, const BezierCurve& bc);
 	
