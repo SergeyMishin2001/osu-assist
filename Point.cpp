@@ -1,13 +1,13 @@
 #include "Point.hpp"
 
-Point::Point(int x, int y) : x(x), y(y) {}
+Point::Point(double x, double y) : x(x), y(y) {}
 
 Point operator+(const Point& a, const Point& b)
 {
 	return Point(a.x + b.x, a.y + b.y);
 }
 
-Point operator==(const Point& a, const Point& b)
+bool operator==(const Point& a, const Point& b)    
 {
 	return (a.x == b.x) && (a.y == b.y);
 }

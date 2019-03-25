@@ -1,37 +1,38 @@
 #ifndef BEZIERCURVE_HPP_INCLUDED
-#define BEZIERCURVE_HPP_INCLDED
+#define BEZIERCURVE_HPP_INCLUDED
 
 #include <vector>
 #include <cmath>
+
 #include "Point.hpp"
+#include "Convert.hpp"
+
 
 typedef std::vector<Point> Bezier;
 
 class BezierCurve
 {
+public: enum class ArcType;
 private:
 //
 
 // FIELDS
-	ArcType type;
+	ArcType m_type;
 	
 	Bezier m_points;
 	Bezier m_segment;
 	Bezier m_arcPoints;
 	Bezier m_result;
 	
-	int m_totalLength;
-	
-	double m_precision;
-	double m_precisionAdd;
-	
-	int m_totalSegments;
 	int m_userTotalArcPoints;
-	int m_totalPoints;
+    
+    bool isOkay = false;
 	
 // METHODS
-	static int getLengthSum();
+	static double getLengthSum(const Bezier& points);
 
+    void _calculateArc();
+	
 public:
 //
 	enum class ArcType
@@ -46,19 +47,19 @@ public:
 	};
 	
 // METHODS
-	void setBezierCurve(const Bezier& points);
+	int setBezierCurve(const Bezier& points);
 	
 	void setArcType(ArcType type);
 	
 	void setSegmentAmount(int amount);
 	
-	void divideCurve();
+	void process();
+    
+    void print();
 	
-	void calculateArc();
+	friend std::ostream& operator<<(std::ostream& out, const BezierCurve& bc);
 	
-	friend std::ostream operator<<(std::ostream& out, const BezierCurve& bc);
-	
-}
+};
 
 
 #endif
